@@ -1,0 +1,68 @@
+{
+  "cats": {
+    "name": "cats",
+    "followers": 25000,
+    "following": 5,
+    "posts": [
+      {
+        "image": "https://i.pinimg.com/736x/2a/73/d6/2a73d6d66465792a5596b3570c14fa97.jpg",
+        "likes": 200,
+        "comments": 17
+      },
+      {
+        "image": "https://i.pinimg.com/736x/28/a8/a9/28a8a944f31ade44d80fa3e02ffe280f.jpg",
+        "likes": 312,
+        "comments": 19
+      },
+      {
+        "image": "https://i.pinimg.com/736x/da/13/ae/da13aef598cfde1a6e481ae8ddff127f.jpg",
+        "likes": 1065,
+        "comments": 200
+      }
+    ]
+  },
+  "penguin": {
+    "name": "penguin",
+    "followers": 75000,
+    "following": 150,
+    "posts": [
+      {
+        "image": "https://i.pinimg.com/736x/80/4e/3c/804e3c01c1b22e4b3668e30b97653beb.jpg",
+        "likes": 3000,
+        "comments": 41
+      },
+      {
+        "image": "https://i.pinimg.com/736x/46/40/f1/4640f1ec6c25591338fc8656ce69c695.jpg",
+        "likes": 2500,
+        "comments": 32
+      },
+      {
+        "image": "https://i.pinimg.com/736x/61/eb/e5/61ebe5d71ae7626b5cb3829893935c54.jpg",
+        "likes": 500,
+        "comments": 6
+      }
+    ]
+  },
+  "eagle": {
+    "name": "eagle",
+    "followers": 656788,
+    "following": 21,
+    "posts": [
+      {
+        "image": "https://i.pinimg.com/736x/1b/2b/ee/1b2beef7f0efbca5084d031c63bc1d32.jpg",
+        "likes": 756789,
+        "comments": 77
+      },
+      {
+        "image": "https://i.pinimg.com/1200x/d3/84/a2/d384a2b615e4668694ca2709a7d88404.jpg",
+        "likes": 76766,
+        "comments": 28
+      },
+      {
+        "image": "https://i.pinimg.com/736x/2d/32/d0/2d32d0c97a55e35ba8979f0fc653fc7b.jpg",
+        "likes": 99999,
+        "comments": 50
+      }
+    ]
+  }
+}

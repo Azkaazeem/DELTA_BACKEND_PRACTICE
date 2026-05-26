@@ -7,6 +7,10 @@
 </head>
 <body>
     <h1>Welcome to the Roll Dice Page</h1>
-    <h3><%= Math.floor(Math.random() * 6) + 1 %></h3>
+    <h2><%= diceVal %></h2>
+
+    <% if (diceVal == 6) { %>
+    <h3>Nice! roll dice again</h3>
+    <% } %>
 </body>
 </html>
