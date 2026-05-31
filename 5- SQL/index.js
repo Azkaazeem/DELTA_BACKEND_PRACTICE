@@ -2,8 +2,11 @@ const path = require('path');
 const { faker } = require('@faker-js/faker');
 const mysql = require('mysql2');
 const express = require('express');
-
+const methodOverride = require('method-override');
 const app = express();
+
+app.use(methodOverride('_method'));
+app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 app.set("views", path.join(__dirname, "views"));
 
@@ -62,8 +65,50 @@ app.get("/users", (req, res) => {
   }
 });
 
+// EDIT ROUTE
+app.get("/users/:id/edit", (req, res) => {
+  let { id } = req.params;
+  let q = `SELECT * FROM user WHERE id = ?`;
+
+  try {
+    connection.query(q, [id], (err, result) => {
+      if (err) throw err;
+      let user = result[0];
+      res.render("edit", { user });
+    });
+  } catch (err) {
+    console.log(err);
+    res.send("Error occurred while fetching data");
+  }
+});
+
+// UPDATE (DB) ROUTE
+app.patch("/users/:id", (req, res) => {
+  let { id } = req.params;
+  let { password: formPass, username: newUsername } = req.body;
+  let q = `SELECT * FROM user WHERE id = ?`;
+
+  try {
+    connection.query(q, [id], (err, result) => {
+      if (err) throw err;
+      let user = result[0];
+      if (formPass !== user.password) {
+        res.send("Password is wrong!");
+      } else {
+        let q2 = `UPDATE user SET username = ? WHERE id = ?`;
+        connection.query(q2, [newUsername, id], (err, result) => {
+          if (err) throw err;
+          res.redirect("/users");
+        });
+      }
+    });
+  } catch (err) {
+    console.log(err);
+    res.send("Error occurred while fetching data");
+  }
+})
+
+
 app.listen("8080", () => {
   console.log("Server is running on port 8080");
 });
-
-// connection.end();
