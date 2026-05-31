@@ -1,8 +1,11 @@
-import { faker } from '@faker-js/faker';
-import mysql from 'mysql2';
-import express from 'express';
+const path = require('path');
+const { faker } = require('@faker-js/faker');
+const mysql = require('mysql2');
+const express = require('express');
 
 const app = express();
+app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "views"));
 
 const connection = mysql.createConnection({
   host: 'localhost',
@@ -11,7 +14,7 @@ const connection = mysql.createConnection({
   database: 'test',
 });
 
-export function createRandomUser() {
+function createRandomUser() {
   return [
     faker.string.uuid(),
     faker.internet.username(),
@@ -30,21 +33,37 @@ for (let i = 1; i <= 100; i++) {
   data.push(createRandomUser());
 }
 
-app.get("/" , (req , res ) => {
-  res.send("Welcome to Home Page");
+app.get("/", (req, res) => {
+  let q = `SELECT COUNT(*) FROM user`;
+  try {
+    connection.query(q, (err, result) => {
+      if (err) throw err;
+      let count = result[0]["COUNT(*)"];
+      res.render("home", { count });
+    });
+  } catch (err) {
+    console.log(err);
+    res.send("Error occurred while fetching data");
+  }
 });
 
-app.listen("8080" , () => {
+
+// SHOW ROUTE
+app.get("/users", (req, res) => {
+  let q = `SELECT * FROM user`;
+  try {
+    connection.query(q, (err, users) => {
+      if (err) throw err;
+      res.render("showusers", { users });
+    });
+  } catch (err) {
+    console.log(err);
+    res.send("Error occurred while fetching data");
+  }
+});
+
+app.listen("8080", () => {
   console.log("Server is running on port 8080");
 });
-
-// try {
-//   connection.query(q, [data], (err, result) => {
-//     if (err) throw err;
-//     console.log(result);
-//   });
-// } catch (err) {
-//   console.log(err);
-// }
 
 // connection.end();
