@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 const Chat = require("./models/chat.js");
 
-main()
-.then(() => {console.log("Connect Successfully!")})
-.catch((err) => {console.log(err)});
-
 async function main() {
     await mongoose.connect("mongodb://localhost:27017/chatDB");
 }
@@ -48,4 +44,12 @@ let allChat = [
     }
 ];
 
-Chat.insertMany(allChat);
+main()
+.then(async () => {
+    await Chat.insertMany(allChat);
+    console.log("Chats inserted successfully!");
+})
+.catch((err) => {console.log(err)})
+.finally(() => {
+    mongoose.connection.close();
+});
