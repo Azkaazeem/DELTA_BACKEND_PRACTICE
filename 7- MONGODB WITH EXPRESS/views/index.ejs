@@ -23,7 +23,7 @@
                     <form method="GET" action="/chats/<%= chat._id %>/edit">
                     <button><i class="fas fa-edit"></i></button>
                 </form>
-                <form method="GET" action="/chats/<%= chat._id %>/?_method=DELETE">
+                <form method="POST" action="/chats/<%= chat._id %>?_method=DELETE">
                     <button><i class="fas fa-trash"></i></button>
                 </form>
                 </div>
