@@ -14,13 +14,6 @@ body {
     margin: auto;
 }
 
-.msg {
-    border-bottom: 1px solid #eee;
-    padding: 10px 5px;
-    border-radius: 5px;
-    background-color: #ffcee8;
-}
-
 button {
     background-color: #af4c7c;
     color: white;
@@ -29,4 +22,43 @@ button {
     cursor: pointer;
     margin-top: 10px;
     margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e379ae;
+}
+
+.msg {
+    display: flex;
+    justify-content: space-between;
+    background-color: #ffcee8;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.msg button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #af4c7c;
+    transition: color 0.3s;
+}
+
+.msg button:hover {
+    color: #e379ae;
+}
+
+.created-at {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9em;
+    color: #555;
+    margin-top: 10px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 0px;
 }

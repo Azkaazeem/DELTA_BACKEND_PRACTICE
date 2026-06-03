@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mini Whatsapp</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/style.css">
 </head>
 
@@ -16,9 +17,22 @@
     <% for (chat of chats) { %>
         <div class="chat">
             <h4> From: <i><b> <%= chat.from %></b> </i></h4>
-            <p class="msg"> <b>Message:</b> <i><%= chat.msg %></i></p>
+            <div class="msg">
+                <p> <b>Message:</b> <i><%= chat.msg %></i></p>
+                <div class="action-buttons">
+                    <form method="GET" action="/chats/<%= chat._id %>/edit">
+                    <button><i class="fas fa-edit"></i></button>
+                </form>
+                <form method="GET" action="/chats/<%= chat._id %>/?_method=DELETE">
+                    <button><i class="fas fa-trash"></i></button>
+                </form>
+                </div>
+            </div>
             <p> Received by: <i><b> <%= chat.to %> </b></i></p>
-            <p> <% chat.created_at %> </p>
+            <div class="created-at">
+                <p> <%= chat.created_at.toString().split(" ")[4] %> </p>
+                <p> <%= chat.created_at.toString().split(" ").slice(0 , 4).join("-") %> </p>
+            </div>
             <hr>
         </div>
     <% } %>
